@@ -1,0 +1,13 @@
+{
+  "name": "@techmely/products-models",
+  "private": false,
+  "license": "MIT",
+  "workspaces": [
+    "products/*"
+  ],
+  "devDependencies": {
+    "@bufbuild/protobuf": "1.10.0",
+    "ts-proto": "1.180.0",
+    "@bufbuild/buf": "1.34.0"
+  }
+}

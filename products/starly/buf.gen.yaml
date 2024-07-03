@@ -1,0 +1,16 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/techmely/models
+plugins:
+  - plugin: buf.build/protocolbuffers/go
+    out: gen/go
+    opt: paths=source_relative
+  - plugin: buf.build/connectrpc/go
+    out: gen/go
+    opt: paths=source_relative
+  - plugin: ts
+    out: gen/ts
+    strategy: all
+    path: protoc-gen-ts_proto

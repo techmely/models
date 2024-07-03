@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package gen.go.preferences.v1;
+option go_package="github.com/techmely/starly/blob/main/products/starly/gen/go/preferences/v1;preferences_model_v1";
+
+message Preferences {
+  int64 id = 1;
+}
