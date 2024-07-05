@@ -25,5 +25,3 @@ export * from "./gen/ts/tenant/v1/tenant.service";
 export * from "./gen/ts/meta_schema/v1/meta_schema.event";
 export * from "./gen/ts/meta_schema/v1/meta_schema.model";
 export * from "./gen/ts/meta_schema/v1/meta_schema.service";
-
-export * from "./gen/ts/error/v1/response.error.model";
