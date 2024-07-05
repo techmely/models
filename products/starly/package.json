@@ -1,14 +1,14 @@
 {
-  "name": "@techmely/models",
-  "version": "1.0.0",
-  "homepage": "https://abount.techmely.com/products",
+  "name": "@techmely/starly-models",
+  "version": "1.0.1",
+  "homepage": "https://handbook.techmely.com/products/list/starly",
   "bugs": {
-    "url": "https://github.com/techmely/techmely/issues"
+    "url": "https://github.com/techmely/models/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/techmely/techmely.git",
-    "directory": "packages/models"
+    "url": "git+https://github.com/techmely/models.git",
+    "directory": "products/starly"
   },
   "funding": "https://github.com/sponsors/techmely",
   "license": "MIT",
@@ -16,6 +16,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
+    "gen",
     "index.js",
     "index.d.ts",
     "README.md",
