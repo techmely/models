@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import * as _m0 from "protobufjs/minimal";
+import { FileModel } from "../../file/v1/file.model";
 import { Any } from "../../google/protobuf/any";
 
 export const protobufPackage = "gen.go.user.v1";
@@ -129,6 +130,14 @@ export interface UserModel {
   metadata: Any | undefined;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface Collaborator {
+  id: string;
+  name: string;
+  nickname: string;
+  avatar: FileModel | undefined;
+  process: Any | undefined;
 }
 
 function createBaseUserModel(): UserModel {
@@ -430,6 +439,129 @@ export const UserModel = {
       : undefined;
     message.createdAt = object.createdAt ?? "";
     message.updatedAt = object.updatedAt ?? "";
+    return message;
+  },
+};
+
+function createBaseCollaborator(): Collaborator {
+  return { id: "", name: "", nickname: "", avatar: undefined, process: undefined };
+}
+
+export const Collaborator = {
+  encode(message: Collaborator, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.nickname !== "") {
+      writer.uint32(26).string(message.nickname);
+    }
+    if (message.avatar !== undefined) {
+      FileModel.encode(message.avatar, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.process !== undefined) {
+      Any.encode(message.process, writer.uint32(42).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Collaborator {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCollaborator();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.nickname = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.avatar = FileModel.decode(reader, reader.uint32());
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.process = Any.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Collaborator {
+    return {
+      id: isSet(object.id) ? globalThis.String(object.id) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      nickname: isSet(object.nickname) ? globalThis.String(object.nickname) : "",
+      avatar: isSet(object.avatar) ? FileModel.fromJSON(object.avatar) : undefined,
+      process: isSet(object.process) ? Any.fromJSON(object.process) : undefined,
+    };
+  },
+
+  toJSON(message: Collaborator): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.nickname !== "") {
+      obj.nickname = message.nickname;
+    }
+    if (message.avatar !== undefined) {
+      obj.avatar = FileModel.toJSON(message.avatar);
+    }
+    if (message.process !== undefined) {
+      obj.process = Any.toJSON(message.process);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Collaborator>, I>>(base?: I): Collaborator {
+    return Collaborator.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Collaborator>, I>>(object: I): Collaborator {
+    const message = createBaseCollaborator();
+    message.id = object.id ?? "";
+    message.name = object.name ?? "";
+    message.nickname = object.nickname ?? "";
+    message.avatar = (object.avatar !== undefined && object.avatar !== null)
+      ? FileModel.fromPartial(object.avatar)
+      : undefined;
+    message.process = (object.process !== undefined && object.process !== null)
+      ? Any.fromPartial(object.process)
+      : undefined;
     return message;
   },
 };

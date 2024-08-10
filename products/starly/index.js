@@ -6,6 +6,8 @@ export * from "./gen/ts/account/firebase.model";
 export * from "./gen/ts/common/common.model";
 export * from "./gen/ts/common/response.model";
 
+export * from "./gen/ts/file/v1/file.model";
+
 export * from "./gen/ts/google/protobuf/any";
 export * from "./gen/ts/google/protobuf/empty";
 export * from "./gen/ts/google/protobuf/wrappers";

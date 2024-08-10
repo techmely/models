@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/any.proto";
+import "file/v1/file.model.proto";
 
 package gen.go.user.v1;
 option go_package="github.com/techmely/starly/blob/main/products/starly/gen/go/user/v1;user_model_v1";
@@ -38,4 +39,12 @@ message UserModel {
     google.protobuf.Any metadata = 14;
     string created_at = 15;
     string updated_at = 16;
+}
+
+message Collaborator {
+    string id = 1;
+    string name = 2;
+    string nickname = 3;
+    file.v1.FileModel avatar = 4;
+    google.protobuf.Any process = 5;
 }
