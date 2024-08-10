@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "google/protobuf/any.proto";
+import "google/protobuf/struct.proto";
 import "file/v1/file.model.proto";
 
 package gen.go.user.v1;
@@ -36,7 +36,7 @@ message UserModel {
     string utm_campaign = 11;
     string utm_medium = 12;
     string utm_source = 13;
-    google.protobuf.Any metadata = 14;
+    google.protobuf.Value metadata = 14;
     string created_at = 15;
     string updated_at = 16;
 }
@@ -46,5 +46,5 @@ message Collaborator {
     string name = 2;
     string nickname = 3;
     file.v1.FileModel avatar = 4;
-    google.protobuf.Any process = 5;
+    google.protobuf.Value process = 5;
 }

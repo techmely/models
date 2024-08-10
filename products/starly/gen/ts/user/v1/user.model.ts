@@ -7,7 +7,7 @@
 /* eslint-disable */
 import * as _m0 from "protobufjs/minimal";
 import { FileModel } from "../../file/v1/file.model";
-import { Any } from "../../google/protobuf/any";
+import { Value } from "../../google/protobuf/struct";
 
 export const protobufPackage = "gen.go.user.v1";
 
@@ -127,7 +127,7 @@ export interface UserModel {
   utmCampaign: string;
   utmMedium: string;
   utmSource: string;
-  metadata: Any | undefined;
+  metadata: any | undefined;
   createdAt: string;
   updatedAt: string;
 }
@@ -137,7 +137,7 @@ export interface Collaborator {
   name: string;
   nickname: string;
   avatar: FileModel | undefined;
-  process: Any | undefined;
+  process: any | undefined;
 }
 
 function createBaseUserModel(): UserModel {
@@ -203,7 +203,7 @@ export const UserModel = {
       writer.uint32(106).string(message.utmSource);
     }
     if (message.metadata !== undefined) {
-      Any.encode(message.metadata, writer.uint32(114).fork()).ldelim();
+      Value.encode(Value.wrap(message.metadata), writer.uint32(114).fork()).ldelim();
     }
     if (message.createdAt !== "") {
       writer.uint32(122).string(message.createdAt);
@@ -317,7 +317,7 @@ export const UserModel = {
             break;
           }
 
-          message.metadata = Any.decode(reader, reader.uint32());
+          message.metadata = Value.unwrap(Value.decode(reader, reader.uint32()));
           continue;
         case 15:
           if (tag !== 122) {
@@ -357,7 +357,7 @@ export const UserModel = {
       utmCampaign: isSet(object.utmCampaign) ? globalThis.String(object.utmCampaign) : "",
       utmMedium: isSet(object.utmMedium) ? globalThis.String(object.utmMedium) : "",
       utmSource: isSet(object.utmSource) ? globalThis.String(object.utmSource) : "",
-      metadata: isSet(object.metadata) ? Any.fromJSON(object.metadata) : undefined,
+      metadata: isSet(object?.metadata) ? object.metadata : undefined,
       createdAt: isSet(object.createdAt) ? globalThis.String(object.createdAt) : "",
       updatedAt: isSet(object.updatedAt) ? globalThis.String(object.updatedAt) : "",
     };
@@ -405,7 +405,7 @@ export const UserModel = {
       obj.utmSource = message.utmSource;
     }
     if (message.metadata !== undefined) {
-      obj.metadata = Any.toJSON(message.metadata);
+      obj.metadata = message.metadata;
     }
     if (message.createdAt !== "") {
       obj.createdAt = message.createdAt;
@@ -434,9 +434,7 @@ export const UserModel = {
     message.utmCampaign = object.utmCampaign ?? "";
     message.utmMedium = object.utmMedium ?? "";
     message.utmSource = object.utmSource ?? "";
-    message.metadata = (object.metadata !== undefined && object.metadata !== null)
-      ? Any.fromPartial(object.metadata)
-      : undefined;
+    message.metadata = object.metadata ?? undefined;
     message.createdAt = object.createdAt ?? "";
     message.updatedAt = object.updatedAt ?? "";
     return message;
@@ -462,7 +460,7 @@ export const Collaborator = {
       FileModel.encode(message.avatar, writer.uint32(34).fork()).ldelim();
     }
     if (message.process !== undefined) {
-      Any.encode(message.process, writer.uint32(42).fork()).ldelim();
+      Value.encode(Value.wrap(message.process), writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -507,7 +505,7 @@ export const Collaborator = {
             break;
           }
 
-          message.process = Any.decode(reader, reader.uint32());
+          message.process = Value.unwrap(Value.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -524,7 +522,7 @@ export const Collaborator = {
       name: isSet(object.name) ? globalThis.String(object.name) : "",
       nickname: isSet(object.nickname) ? globalThis.String(object.nickname) : "",
       avatar: isSet(object.avatar) ? FileModel.fromJSON(object.avatar) : undefined,
-      process: isSet(object.process) ? Any.fromJSON(object.process) : undefined,
+      process: isSet(object?.process) ? object.process : undefined,
     };
   },
 
@@ -543,7 +541,7 @@ export const Collaborator = {
       obj.avatar = FileModel.toJSON(message.avatar);
     }
     if (message.process !== undefined) {
-      obj.process = Any.toJSON(message.process);
+      obj.process = message.process;
     }
     return obj;
   },
@@ -559,9 +557,7 @@ export const Collaborator = {
     message.avatar = (object.avatar !== undefined && object.avatar !== null)
       ? FileModel.fromPartial(object.avatar)
       : undefined;
-    message.process = (object.process !== undefined && object.process !== null)
-      ? Any.fromPartial(object.process)
-      : undefined;
+    message.process = object.process ?? undefined;
     return message;
   },
 };

@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as _m0 from "protobufjs/minimal";
-import { Any } from "../../google/protobuf/any";
+import { Value } from "../../google/protobuf/struct";
 import {
   AuthStrategy,
   authStrategyFromJSON,
@@ -32,7 +32,7 @@ export interface CreateUserRequest {
   utmCampaign: string;
   utmMedium: string;
   utmSource: string;
-  metadata: Any | undefined;
+  metadata: any | undefined;
 }
 
 export interface GetUserRequest {
@@ -123,7 +123,7 @@ export const CreateUserRequest = {
       writer.uint32(106).string(message.utmSource);
     }
     if (message.metadata !== undefined) {
-      Any.encode(message.metadata, writer.uint32(114).fork()).ldelim();
+      Value.encode(Value.wrap(message.metadata), writer.uint32(114).fork()).ldelim();
     }
     return writer;
   },
@@ -224,7 +224,7 @@ export const CreateUserRequest = {
             break;
           }
 
-          message.metadata = Any.decode(reader, reader.uint32());
+          message.metadata = Value.unwrap(Value.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -249,7 +249,7 @@ export const CreateUserRequest = {
       utmCampaign: isSet(object.utmCampaign) ? globalThis.String(object.utmCampaign) : "",
       utmMedium: isSet(object.utmMedium) ? globalThis.String(object.utmMedium) : "",
       utmSource: isSet(object.utmSource) ? globalThis.String(object.utmSource) : "",
-      metadata: isSet(object.metadata) ? Any.fromJSON(object.metadata) : undefined,
+      metadata: isSet(object?.metadata) ? object.metadata : undefined,
     };
   },
 
@@ -292,7 +292,7 @@ export const CreateUserRequest = {
       obj.utmSource = message.utmSource;
     }
     if (message.metadata !== undefined) {
-      obj.metadata = Any.toJSON(message.metadata);
+      obj.metadata = message.metadata;
     }
     return obj;
   },
@@ -314,9 +314,7 @@ export const CreateUserRequest = {
     message.utmCampaign = object.utmCampaign ?? "";
     message.utmMedium = object.utmMedium ?? "";
     message.utmSource = object.utmSource ?? "";
-    message.metadata = (object.metadata !== undefined && object.metadata !== null)
-      ? Any.fromPartial(object.metadata)
-      : undefined;
+    message.metadata = object.metadata ?? undefined;
     return message;
   },
 };

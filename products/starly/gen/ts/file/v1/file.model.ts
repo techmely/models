@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as _m0 from "protobufjs/minimal";
-import { Any } from "../../google/protobuf/any";
+import { Value } from "../../google/protobuf/struct";
 
 export const protobufPackage = "gen.go.file.v1";
 
@@ -15,11 +15,11 @@ export interface FileModel {
   title: string;
   description: string;
   contentType: string;
-  bucker: string;
+  bucket: string;
   fileName: string;
   filePath: string;
   fileUrl: string;
-  metadata: Any | undefined;
+  metadata: any | undefined;
   userId?: string | undefined;
 }
 
@@ -29,7 +29,7 @@ function createBaseFileModel(): FileModel {
     title: "",
     description: "",
     contentType: "",
-    bucker: "",
+    bucket: "",
     fileName: "",
     filePath: "",
     fileUrl: "",
@@ -52,8 +52,8 @@ export const FileModel = {
     if (message.contentType !== "") {
       writer.uint32(34).string(message.contentType);
     }
-    if (message.bucker !== "") {
-      writer.uint32(42).string(message.bucker);
+    if (message.bucket !== "") {
+      writer.uint32(42).string(message.bucket);
     }
     if (message.fileName !== "") {
       writer.uint32(50).string(message.fileName);
@@ -65,7 +65,7 @@ export const FileModel = {
       writer.uint32(66).string(message.fileUrl);
     }
     if (message.metadata !== undefined) {
-      Any.encode(message.metadata, writer.uint32(74).fork()).ldelim();
+      Value.encode(Value.wrap(message.metadata), writer.uint32(74).fork()).ldelim();
     }
     if (message.userId !== undefined) {
       writer.uint32(82).string(message.userId);
@@ -113,7 +113,7 @@ export const FileModel = {
             break;
           }
 
-          message.bucker = reader.string();
+          message.bucket = reader.string();
           continue;
         case 6:
           if (tag !== 50) {
@@ -141,7 +141,7 @@ export const FileModel = {
             break;
           }
 
-          message.metadata = Any.decode(reader, reader.uint32());
+          message.metadata = Value.unwrap(Value.decode(reader, reader.uint32()));
           continue;
         case 10:
           if (tag !== 82) {
@@ -165,11 +165,11 @@ export const FileModel = {
       title: isSet(object.title) ? globalThis.String(object.title) : "",
       description: isSet(object.description) ? globalThis.String(object.description) : "",
       contentType: isSet(object.contentType) ? globalThis.String(object.contentType) : "",
-      bucker: isSet(object.bucker) ? globalThis.String(object.bucker) : "",
+      bucket: isSet(object.bucket) ? globalThis.String(object.bucket) : "",
       fileName: isSet(object.fileName) ? globalThis.String(object.fileName) : "",
       filePath: isSet(object.filePath) ? globalThis.String(object.filePath) : "",
       fileUrl: isSet(object.fileUrl) ? globalThis.String(object.fileUrl) : "",
-      metadata: isSet(object.metadata) ? Any.fromJSON(object.metadata) : undefined,
+      metadata: isSet(object?.metadata) ? object.metadata : undefined,
       userId: isSet(object.userId) ? globalThis.String(object.userId) : undefined,
     };
   },
@@ -188,8 +188,8 @@ export const FileModel = {
     if (message.contentType !== "") {
       obj.contentType = message.contentType;
     }
-    if (message.bucker !== "") {
-      obj.bucker = message.bucker;
+    if (message.bucket !== "") {
+      obj.bucket = message.bucket;
     }
     if (message.fileName !== "") {
       obj.fileName = message.fileName;
@@ -201,7 +201,7 @@ export const FileModel = {
       obj.fileUrl = message.fileUrl;
     }
     if (message.metadata !== undefined) {
-      obj.metadata = Any.toJSON(message.metadata);
+      obj.metadata = message.metadata;
     }
     if (message.userId !== undefined) {
       obj.userId = message.userId;
@@ -218,13 +218,11 @@ export const FileModel = {
     message.title = object.title ?? "";
     message.description = object.description ?? "";
     message.contentType = object.contentType ?? "";
-    message.bucker = object.bucker ?? "";
+    message.bucket = object.bucket ?? "";
     message.fileName = object.fileName ?? "";
     message.filePath = object.filePath ?? "";
     message.fileUrl = object.fileUrl ?? "";
-    message.metadata = (object.metadata !== undefined && object.metadata !== null)
-      ? Any.fromPartial(object.metadata)
-      : undefined;
+    message.metadata = object.metadata ?? undefined;
     message.userId = object.userId ?? undefined;
     return message;
   },

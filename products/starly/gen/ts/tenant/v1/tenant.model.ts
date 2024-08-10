@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as _m0 from "protobufjs/minimal";
-import { Any } from "../../google/protobuf/any";
+import { Value } from "../../google/protobuf/struct";
 
 export const protobufPackage = "gen.go.tenant.v1";
 
@@ -17,7 +17,7 @@ export interface TenantTable {
   description: string;
   isVerified: boolean;
   ownerId: string;
-  metadata: Any | undefined;
+  metadata: any | undefined;
   createdAt: string;
   updatedAt: string;
 }
@@ -57,7 +57,7 @@ export const TenantTable = {
       writer.uint32(50).string(message.ownerId);
     }
     if (message.metadata !== undefined) {
-      Any.encode(message.metadata, writer.uint32(58).fork()).ldelim();
+      Value.encode(Value.wrap(message.metadata), writer.uint32(58).fork()).ldelim();
     }
     if (message.createdAt !== "") {
       writer.uint32(66).string(message.createdAt);
@@ -122,7 +122,7 @@ export const TenantTable = {
             break;
           }
 
-          message.metadata = Any.decode(reader, reader.uint32());
+          message.metadata = Value.unwrap(Value.decode(reader, reader.uint32()));
           continue;
         case 8:
           if (tag !== 66) {
@@ -155,7 +155,7 @@ export const TenantTable = {
       description: isSet(object.description) ? globalThis.String(object.description) : "",
       isVerified: isSet(object.isVerified) ? globalThis.Boolean(object.isVerified) : false,
       ownerId: isSet(object.ownerId) ? globalThis.String(object.ownerId) : "",
-      metadata: isSet(object.metadata) ? Any.fromJSON(object.metadata) : undefined,
+      metadata: isSet(object?.metadata) ? object.metadata : undefined,
       createdAt: isSet(object.createdAt) ? globalThis.String(object.createdAt) : "",
       updatedAt: isSet(object.updatedAt) ? globalThis.String(object.updatedAt) : "",
     };
@@ -182,7 +182,7 @@ export const TenantTable = {
       obj.ownerId = message.ownerId;
     }
     if (message.metadata !== undefined) {
-      obj.metadata = Any.toJSON(message.metadata);
+      obj.metadata = message.metadata;
     }
     if (message.createdAt !== "") {
       obj.createdAt = message.createdAt;
@@ -204,9 +204,7 @@ export const TenantTable = {
     message.description = object.description ?? "";
     message.isVerified = object.isVerified ?? false;
     message.ownerId = object.ownerId ?? "";
-    message.metadata = (object.metadata !== undefined && object.metadata !== null)
-      ? Any.fromPartial(object.metadata)
-      : undefined;
+    message.metadata = object.metadata ?? undefined;
     message.createdAt = object.createdAt ?? "";
     message.updatedAt = object.updatedAt ?? "";
     return message;
